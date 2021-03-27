@@ -3,7 +3,7 @@
 using namespace std;
 
 class Node {
-public:         // Public, so can be modified outside of Node class.
+public:                     // Public, so can be modified outside of Node class.
     int data;
     Node *next = nullptr;
     Node *previous = nullptr;
@@ -13,18 +13,16 @@ public:         // Public, so can be modified outside of Node class.
 };
 
 class MyLinkedList {
-private:        // Private, so only instance methods can modify them.
+private:                      // Private, so only instance methods can modify them.
     Node *head = nullptr;
     Node *tail = nullptr;
     int currentSize = 0;
 
 public:
-    //Grey bar
-
     // Appends a node to the end of the list.
     void appendItem(int data){
         Node *newNode = new Node(data);
-        if(this->tail == nullptr){  // If list is empty
+        if(this->tail == nullptr){                  // If list is empty
             this->head = newNode;
             this->tail = newNode;
         } else {
@@ -51,7 +49,7 @@ public:
     void display(){
         Node *node = this->head;
         cout << "Length = " << this->currentSize << endl;
-        while(node!=nullptr){   // nullptr would be tail of list (end)
+        while(node!=nullptr){                       // nullptr would be tail of list (end)
             cout << node->data << endl;
             node = node->next;
         }
@@ -59,57 +57,57 @@ public:
     // Retruns node at given index if it exists, else, throws an exception.
     Node *getNode(int index){
         Node *node = this->head;
-        if((node == nullptr)||(index < 0)) {    // Checks if index is invalid.
+        if((node == nullptr)||(index < 0)) {        // Checks if index is invalid.
             throw "Bad Index Value!";
         }
-        if(index == this->currentSize){          // If index tail, returns it immdeiately.
+        if(index == this->currentSize){             // If index tail, returns it immdeiately.
             return this->tail;
         }
         int i = 0;
         while(i < index){
             node = node->next;
             if(node == nullptr){
-                throw "Bad Index Value!"; // Index exceeds length of list.
+                throw "Bad Index Value!";           // Index exceeds length of list.
             }
             i = i + 1;
         }
-        return node;    // "node" is head of list remember.
+        return node;                                // "node" is head of list remember.
     }
     // Gets data from node - "item"
     int getItem(int index){
-        return this->getNode(index)->data;  // Propafaites exception from getNode in case bad index value.
+        return this->getNode(index)->data;          // Propafaites exception from getNode in case bad index value.
     }
     // Insert item anywhere in list
     void insertItem(int data, int index){
         if((index < 0)||(index > this->currentSize)){
             throw "Bad Index Value!";
         }
-        if(index == 0) {                // Making use of previous functions to help with this one.
+        if(index == 0) {                            // Making use of previous functions to help with this one.
             this->prependItem(data);
         } else if(index == this->currentSize) {
             this->appendItem(data);
         } else {
-            Node *newNode = new Node(data); // The actual node we're inserting.
-            Node *preceding = this->getNode(index-1); // Can't be null
-            Node *existing = preceding->next; // Can be null iff index = currentSize
+            Node *newNode = new Node(data);         // The actual node we're inserting.
+            Node *preceding = this->getNode(index-1);   // Can't be null
+            Node *existing = preceding->next;           // Can be null iff index = currentSize
 
             preceding->next = newNode;
             newNode->previous = preceding;
             newNode->next = existing;
-            existing->previous = newNode;   // Pointers are changed with respect to added node.
+            existing->previous = newNode;           // Pointers are changed with respect to added node.
 
             this->currentSize = this->currentSize + 1;
         }
     }
     // Removes item from list
     int removeItem(int index){
-        Node *toRemove = this->getNode(index); // != nullptr
+        Node *toRemove = this->getNode(index);      // != nullptr
 
         Node *following = toRemove->next;
         if(following != nullptr){
             following->previous = toRemove->previous;
         } else {
-            this->tail = toRemove->previous; // No following node, so tail is removed.
+            this->tail = toRemove->previous;        // No following node, so tail is removed.
         }
         Node *preceding = toRemove->previous;
         if(preceding != nullptr){
@@ -151,7 +149,7 @@ int main()
         cout << "Demonstrating getItem(1)..." << endl;
         cout << list.getItem(1) << endl;
 
-        //cout << "Demonstrating getItem(10) [error]" << endl;
+        //cout << "Demonstrating getItem(10) [error]" << endl;      // If you want to demonstrate an error.
         //cout << list.getItem(10) << endl;
 
         cout << "Inserting at position 0..." << endl;
