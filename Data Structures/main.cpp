@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#define MAXSIZE 5
+#define MAXSIZE 5           // Defined so as not to hard-code. 
 
 using namespace std;
 
@@ -50,9 +50,11 @@ public:
             return popValue;
         }
     }
+    // Count of items
     int count(){
         return(top + 1); // Zero Based index position - always one less
     }
+    // Peek
     int peek(int index){
         if(isEmpty()){
             cout << "Stack is Empty" << endl;
@@ -60,10 +62,12 @@ public:
             return arr[index];
         }
     }
+    // Changes a specified item at a given index.
     void change(int index, int value){
         arr[index] = value;
         cout << "Value changed at index: " << index << endl;
     }
+    // Displays the stack
     void display(){
         cout << "All values in the Stack are: " << endl;
         for(int i = MAXSIZE-1; i >= 0; i--){
@@ -73,7 +77,7 @@ public:
 
 };
 
-int main()
+int main() // Illustrates the functionality of the program.
 {
      Stack s1;
      int option, position, value;
