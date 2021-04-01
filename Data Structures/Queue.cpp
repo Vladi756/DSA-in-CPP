@@ -85,7 +85,7 @@ public:
 
 
 
-int main()
+int main()      // Implementation of the Queue and all its methods.
 {
     Queue q1;
     int option, value;
