@@ -12,7 +12,7 @@ int main()  // Test Driver for the algorithm
 
     return 0;
 }
-// Alrogithm implemented in the function below 
+// Algorithm implemented in the function below 
  int maxSubArray(int arr[9]) {
         int a = INT_MIN;                    // Maximum so Far
         int b = 0;                          // Maximum ending at particular poisition it's at (maximum ending here).
