@@ -28,7 +28,7 @@ int main()
     return 0;
 }
 
-// ----------- INSERTION SORT -------------- //
+// ----------- INSERTION SORT --------------- //
 /*
  Think of i as the increment variable, j as the 'hole'
  which is the index where the checking happens, and k as the
