@@ -3,8 +3,7 @@
 void quickSort(int arr[], int s, int e);
 int Partition(int arr[], int s, int e);
 
-int main()
-{
+int main() {            // Driver code
 
     int n;
     std::cout << "Enter Size of Array: " << std::endl;
@@ -44,7 +43,7 @@ int Partition(int arr[], int s, int e){
 }
 
 void quickSort(int arr[], int s, int e){
-    if(s < e){  // When the recursion bottoms out
+    if(s < e){                              // Recursion bottoms out 
         int p = Partition(arr, s, e);
         quickSort(arr, s, (p - 1));
         quickSort(arr, (p + 1), e);
