@@ -1,14 +1,8 @@
 #include <iostream>
 
-void insertionSort(int arr[], size_t n);
+void insertionSort(int arr[], size_t n);    // Forward Declaration 
 
-void swap(int *a, int *b){
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-int main() {
+int main() { // Driver code
     int arr[] = {1, 10, 2, 9, 3, 8, 4, 5, 8, 6, 7};
     size_t n = sizeof(arr)/sizeof(arr[0]);
     insertionSort(arr, n);
