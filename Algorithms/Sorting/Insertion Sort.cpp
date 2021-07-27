@@ -18,10 +18,10 @@ void insertionSort(int arr[], size_t n){
    for(i = 1; i < n; i++){
         j = i - 1;
         k = arr[i];
-        while(j > 0 && arr[j] > k){
+        while(j > 0 && arr[j] > k){         // Key larger than 0 && the element behind the value is greater (i.e. array is still unsorted)
             arr[j+1] = arr[j];              // j+1 is where k is.
             j--;
         }
-        arr[j+1] = k;
+        arr[j+1] = k;           // When in proper position - valur overrides whatever was there before.
    }
 }
