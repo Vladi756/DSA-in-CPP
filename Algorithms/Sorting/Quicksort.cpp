@@ -30,7 +30,7 @@ int Partition(int arr[], int s, int e){
 
     for(int i = s; i < e; i++){
         if(arr[i] < pivot){
-            int temp = arr[i];
+            int temp = arr[i];      // Swap arr[i] with arr[pIndex]
             arr[i] = arr[pIndex];
             arr[pIndex] = temp;
             pIndex++;
@@ -38,7 +38,7 @@ int Partition(int arr[], int s, int e){
     }
     int temp = arr[e];
     arr[e] = arr[pIndex];
-    arr[pIndex] = temp;
+    arr[pIndex] = temp;     // Swap arr[e] && arr[pIndex]
     return pIndex;
 }
 
