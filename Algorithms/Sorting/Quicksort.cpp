@@ -1,51 +1,47 @@
 #include <iostream>
 
-void quickSort(int arr[], int s, int e);
+void quicksort(int arr[], int s, int e);
 int Partition(int arr[], int s, int e);
 
-int main() {            // Driver code
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-    int n;
-    std::cout << "Enter Size of Array: " << std::endl;
-    std::cin >> n;
-    int arr[n];
-    std::cout << "Enter " << n << " elements in any order: " << std::endl;
+int main(){
+    int arr[] = {0, 10, 1, 9, 2, 8, 3, 7, 4, 6, 5};
 
-    for(int i = 0; i < n; i++){
-        std::cin >> arr[i];
+    quicksort(arr, 0, 11);
+
+    for(int i = 0; i < 11; i++){
+        std::cout << arr[i] << "\t";
     }
+}
 
-    for(int x : arr){std::cout << x << "\t";}
-
-    std::cout << "\nRunning QuickSort" << std::endl;
-    quickSort(arr, 0, n-1);
-
-    for(int x : arr) {std::cout << x << "\t";}
-    return 0;
+void quicksort(int arr[], int s, int e){
+    if(s < e){
+        int p = Partition(arr, s, e);
+        quicksort(arr, s, p);
+        quicksort(arr, p+1, e);
+    }
 }
 
 int Partition(int arr[], int s, int e){
-    int pivot = arr[e];
-    int pIndex = s;
-
-    for(int i = s; i < e; i++){
-        if(arr[i] < pivot){
-            int temp = arr[i];      // Swap arr[i] with arr[pIndex]
-            arr[i] = arr[pIndex];
-            arr[pIndex] = temp;
-            pIndex++;
+    int pivot = arr[s];
+    int i = s;
+    int j = e;
+    while(i < j){
+        do {
+            i++;
+        } while(arr[i] <= pivot);
+        do {
+            j--;
+        } while(arr[j] > pivot);
+        if(i < j){
+            swap(&arr[i], &arr[j]);
         }
     }
-    int temp = arr[e];
-    arr[e] = arr[pIndex];
-    arr[pIndex] = temp;     // Swap arr[e] && arr[pIndex]
-    return pIndex;
-}
-
-void quickSort(int arr[], int s, int e){
-    if(s < e){                              // Recursion bottoms out 
-        int p = Partition(arr, s, e);
-        quickSort(arr, s, (p - 1));
-        quickSort(arr, (p + 1), e);
-    }
+    swap(&arr[s], &arr[j]);
+    return j;
 }
