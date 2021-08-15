@@ -1,27 +1,26 @@
 #include <iostream>
 
-void insertionSort(int arr[], size_t n);    // Forward Declaration 
-
-int main() {                            // Driver code
-    int arr[] = {1, 10, 2, 9, 3, 8, 4, 5, 8, 6, 7};
-    size_t n = sizeof(arr)/sizeof(arr[0]);
-    insertionSort(arr, n);
-
-    for(unsigned int i = 0; i < n; i++){
-        std::cout << arr[i] << "\t";
-    }
-
-}
-
 void insertionSort(int arr[], size_t n){
-   int i, k, j;
-   for(i = 1; i < n; i++){
+    int i, j, k;            // i, key, value; respectively
+    for(int i = 1; i < n; i++){
         j = i - 1;
         k = arr[i];
-        while(j > 0 && arr[j] > k){         // Key larger than 0 && the element behind the value is greater (i.e. array is still unsorted)
-            arr[j+1] = arr[j];              // j+1 is where k is.
+        while(j > 0 && arr[j] > k){
+            arr[j+1] = arr[j];      // Have two of the same elements
             j--;
         }
-        arr[j+1] = k;           // When in proper position - valur overrides whatever was there before.
-   }
+        arr[j+1] = k;         // Overrides to proper position
+    }
+}
+
+int main()
+{
+    int arr[] = {0, 10, 1, 9, 2, 8, 3, 7, 4, 6, 5}; // size 11
+    int n = 11;
+
+    insertionSort(arr, n);
+
+    for(int i = 0; i < n; i++){std::cout << arr[i] << "\t";}
+
+    return 0;
 }
