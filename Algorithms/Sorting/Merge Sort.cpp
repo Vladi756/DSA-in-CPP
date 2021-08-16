@@ -1,67 +1,50 @@
 #include <bits/stdc++.h>
 
 void mergeSort(int arr[], int l, int r);
-void mergeFunction(int arr[], int l, int m, int r);
+void merge(int arr[], int l, int m, int r);
 
-int main(){         // Test Driver;
+int main(){
+    int arr[] = {0, 10, 1, 9, 2, 8, 3, 7, 4, 6, 5};
 
-    int myArray[10] = {4, 2, 8, 9, 6, 10, 1, 5, 3, 7};
+    mergeSort(arr, 0, 10);
 
-    std::cout << "Original array: " << std::endl;
-
-    for(int i = 0; i < 10; i++){
-        std::cout << myArray[i] << std::endl;
+    for(int i = 0; i <= 10; i++){       // n - 1;
+        std::cout << arr[i] << "\t";
     }
-    std::cout << "Running MergeSort..." << std::endl;
-
-    mergeSort(myArray, 0, 9);
-
-    std::cout << "Sorted Array:" << std::endl;
-
-    for(int i = 0; i < 10; i++) {
-        std::cout << myArray[i] << std::endl;
-    }
-
-    return 0;
 }
 
-void mergeSort(int arr[], int l, int r) {   // Merge Sort Algorithm
+void mergeSort(int arr[], int l, int r){
     if(l < r){
-        int m = (l + r)/2;
+        int m = (l+r)/2;
         mergeSort(arr, l, m);
-        mergeSort(arr, m + 1, r);
-        mergeFunction(arr, l, m, r);
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
     }
 }
 
-void mergeFunction(int arr[], int l, int m, int r){             // Merge function
-    int i = l;          // Starting point of left subarray.
-    int j = m + 1;      // Starting point of right subarray.
-    int k = l;          // Starting point of temp array.
-    int temp[10];       // To avoid size restrictions, use vectors.
-
-    while((i <= m) && (j <= r)) {           // While both subarrays still have elements
+void merge(int arr[], int l, int m, int r){
+    int i = l;
+    int j = m + 1;
+    int k = l;
+    int temp[11];
+    while(i <= m && j <= r){
         if(arr[i] <= arr[j]){
             temp[k] = arr[i];
-            k++;
-            i++;
+            i++; k++;
         } else {
             temp[k] = arr[j];
-            k++;
-            j++;
+            j++; k++;
         }
     }
-    while(i <= m) {         // While left subbaray sitll has elements, but left one is empty
-        temp[k] = arr[i];   // Because it's already sorted, so just assign the remainder to temp array.
-        k++;
-        i++;
+    while(i <= m) {
+        temp[k] = arr[i];
+        i++; k++;
     }
     while(j <= r) {
         temp[k] = arr[j];
-        k++;
-        j++;
+        j++; k++;
     }
-    for(int p = l; p <= r; p++) {
-        arr[p] = temp[p];
+    for(int s = l; s <= r; s++){
+        arr[s] = temp[s];
     }
 }
