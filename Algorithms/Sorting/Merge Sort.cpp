@@ -1,50 +1,50 @@
 #include <bits/stdc++.h>
 
-void mergeSort(int arr[], int l, int r);
-void merge(int arr[], int l, int m, int r);
+void mergeSort(std::vector<int> &a, int l, int r);
+void merge(std::vector<int> &a, int l, int m, int r);
 
 int main(){
-    int arr[] = {0, 10, 1, 9, 2, 8, 3, 7, 4, 6, 5};
+    std::vector<int> nums = {0, 10, 1, 9, 2, 8, 3, 7, 4, 6, 5};
+    mergeSort(nums, 0, 11);
 
-    mergeSort(arr, 0, 10);
-
-    for(int i = 0; i <= 10; i++){       // n - 1;
-        std::cout << arr[i] << "\t";
-    }
+    for(int x : nums){std::cout << nums[x] << "\t";}
 }
 
-void mergeSort(int arr[], int l, int r){
+void mergeSort(std::vector<int> &a, int l, int r){
     if(l < r){
         int m = (l+r)/2;
-        mergeSort(arr, l, m);
-        mergeSort(arr, m+1, r);
-        merge(arr, l, m, r);
+        mergeSort(a, l, m);
+        mergeSort(a, m+1, r);
+        merge(a, l, m, r);
     }
 }
 
-void merge(int arr[], int l, int m, int r){
+void merge(std::vector<int> &a, int l, int m, int r){
     int i = l;
     int j = m + 1;
+    int n = a.size();
+    std::vector<int> temp(n, 0);
     int k = l;
-    int temp[11];
+
     while(i <= m && j <= r){
-        if(arr[i] <= arr[j]){
-            temp[k] = arr[i];
-            i++; k++;
+        if(a[i] <= a[j]){
+            temp[k] = a[i];
+            i++;
         } else {
-            temp[k] = arr[j];
-            j++; k++;
+            temp[k] = a[j];
+            j++;
         }
+        k++;
     }
-    while(i <= m) {
-        temp[k] = arr[i];
+    while(j <= r){
+        temp[k] = a[j];
+        k++; j++;
+    }
+    while(i <= m){
+        temp[k] = a[i];
         i++; k++;
     }
-    while(j <= r) {
-        temp[k] = arr[j];
-        j++; k++;
-    }
-    for(int s = l; s <= r; s++){
-        arr[s] = temp[s];
+    for(int x = l; x <= r; x++){
+        a[x] = temp[x];
     }
 }
